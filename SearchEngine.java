@@ -36,9 +36,18 @@ class Handler implements URLHandler {
                     for (String string : listOfValidStrings) {
                         returnedString += (string + ", ");
                     }
-                    returnedString = returnedString.substring(0, returnedString.length() - 1);
+                    returnedString = returnedString.substring(0, returnedString.length() - 2);
                     return returnedString;
                 }
+            }
+            else if (url.getPath().contains("/searchAll"))
+            {
+                String returnedString = "Valid Strings found: ";
+                for (String string : savedStrings) {
+                    returnedString += (string + ", ");
+                }
+                returnedString = returnedString.substring(0, returnedString.length() - 2);
+                return returnedString;
             }
             return "404 Not Found!";
         }
