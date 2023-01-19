@@ -7,7 +7,7 @@ class Handler implements URLHandler {
 
     public String handleRequest(URI url) {
         if (url.getPath().equals("/")) {
-            return String.format("Welcome to search engine! Use /add?s=yourString to add to the list and /search?s=yourString to search the list!\nYou can also use /searchAll to see all strings that have been added so far!");
+            return String.format("Welcome to search engine! Use /add?s=yourString to add to the list and /search?s=yourString to search the list!\nYou can also use /all to see all strings that have been added so far!");
         } 
         else 
         {
@@ -40,9 +40,9 @@ class Handler implements URLHandler {
                     return returnedString;
                 }
             }
-            else if (url.getPath().contains("/searchAll"))
+            else if (url.getPath().contains("/all"))
             {
-                if (savedStrings != null)
+                if (savedStrings.isEmpty() == false)
                 {
                     String returnedString = "Valid Strings found: ";
                     for (String string : savedStrings) {
