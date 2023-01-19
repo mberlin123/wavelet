@@ -7,7 +7,7 @@ class Handler implements URLHandler {
 
     public String handleRequest(URI url) {
         if (url.getPath().equals("/")) {
-            return String.format("My name is Michael!");
+            return String.format("Welcome to search engine! Use /add?s=yourString to add to the list and /search?s=yourString to search the list!");
         } 
         else 
         {
@@ -36,6 +36,7 @@ class Handler implements URLHandler {
                     for (String string : listOfValidStrings) {
                         returnedString += (string + ", ");
                     }
+                    returnedString = returnedString.substring(0, returnedString.length() - 1);
                     return returnedString;
                 }
             }
