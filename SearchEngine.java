@@ -7,7 +7,7 @@ class Handler implements URLHandler {
 
     public String handleRequest(URI url) {
         if (url.getPath().equals("/")) {
-            return String.format("Welcome to search engine! Use /add?s=yourString to add to the list and /search?s=yourString to search the list!");
+            return String.format("Welcome to search engine! Use /add?s=yourString to add to the list and /search?s=yourString to search the list!\nYou can also use /searchAll to see all strings that have been added so far!");
         } 
         else 
         {
@@ -42,12 +42,20 @@ class Handler implements URLHandler {
             }
             else if (url.getPath().contains("/searchAll"))
             {
-                String returnedString = "Valid Strings found: ";
-                for (String string : savedStrings) {
-                    returnedString += (string + ", ");
+                if (savedStrings != null)
+                {
+                    String returnedString = "Valid Strings found: ";
+                    for (String string : savedStrings) {
+                        returnedString += (string + ", ");
+                    }
+                    returnedString = returnedString.substring(0, returnedString.length() - 2);
+                    return returnedString;
                 }
-                returnedString = returnedString.substring(0, returnedString.length() - 2);
-                return returnedString;
+                else
+                {
+                    return "No strings have yet been saved to the server!";
+                }
+                
             }
             return "404 Not Found!";
         }
